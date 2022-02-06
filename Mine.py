@@ -1,8 +1,9 @@
 from Blockchain import *
 
+
 class Mine(Blockchain):
-    def __init__(self):
-        self.blockchain = Blockchain()
+    def __init__(self, b):
+        self.blockchain = b
 
     def mining(self):
         blockchain = self.blockchain
@@ -11,6 +12,5 @@ class Mine(Blockchain):
         proof = blockchain.proof_of_work(previous_proof)
         previous_hash = blockchain.hash(previous_block)
         block = blockchain.create_block(proof, previous_hash)
-        #print(blockchain.chain)
+        # print(blockchain.chain)
         return block
-
