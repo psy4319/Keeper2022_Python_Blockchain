@@ -36,7 +36,8 @@
         "sender"     : "1EqApkWCawAdsj2F2pkmEKrqJpQmXfGztp",  
         "senderPrivate" : "cd0aa9856147b6c5b4ff2b7dfee5da20aa38253099ef1b4a64aced233c9afe29"  
     }   
-![image](https://user-images.githubusercontent.com/68144657/155151125-f8e3ee6d-e67c-4aaa-a9b7-88bcde74af2d.png)
+![image](https://user-images.githubusercontent.com/68144657/155188478-c4a78704-c91a-42ba-892c-74ded0046792.png)
+
 
 5. http://localhost:5000/transactions  
 트랜잭션 확인  
