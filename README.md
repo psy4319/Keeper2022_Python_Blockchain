@@ -21,14 +21,14 @@
         "private_key": "cd0aa9856147b6c5b4ff2b7dfee5da20aa38253099ef1b4a64aced233c9afe29",  
         "public_key": "04b546b2a1903e3912260fea264625191395cbb71a996815fdcbbec58ddcc05db522c1dbbc43ee2cd4f946b1cfccd85c8f85486ede484033fc8a023ec7fd57e6d2"  
     }  
-'''
+```
 3. http://localhost:5000/mine   
 채굴  
 ```json
     {  
         "private_key" : "1EqApkWCawAdsj2F2pkmEKrqJpQmXfGztp"  
     }  
-'''
+```
 ![image](https://user-images.githubusercontent.com/68144657/155157988-03799764-21fb-4278-bbe7-202be67eafa1.png)    
 
 4. http://localhost:5000/add_transaction  
@@ -41,7 +41,7 @@
         "sender"     : "1EqApkWCawAdsj2F2pkmEKrqJpQmXfGztp",  
         "senderPrivate" : "cd0aa9856147b6c5b4ff2b7dfee5da20aa38253099ef1b4a64aced233c9afe29"  
     }   
-'''
+```
 ![image](https://user-images.githubusercontent.com/68144657/155188478-c4a78704-c91a-42ba-892c-74ded0046792.png)
 
 
