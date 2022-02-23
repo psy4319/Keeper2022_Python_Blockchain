@@ -1,12 +1,13 @@
 # Keeper2022_Python_Blockchain
 키퍼 겨울방학 기술문서: 파이썬으로 만드는 블록체인
 
-1. http://localhost:5000/  
-블록체인 확인  
+## 1. 블록체인 확인  
+http://localhost:5000/  
 ![image](https://user-images.githubusercontent.com/68144657/155157433-1e9e57dc-5cc3-414b-b34b-1475094dbcb4.png)  
 
-2. http://localhost:5000//generatekey'  
-키 발행 (코드 수정하면 다양한 키를 발행할 수 있음 - 트랜잭션 사용을 위해 결과 내용은 반드시 기록해야 함)  
+## 2. 키 발행  
+http://localhost:5000//generatekey'  
+(코드 수정하면 다양한 키를 발행할 수 있음 - 트랜잭션 사용을 위해 결과 내용은 반드시 기록해야 함)  
 ![image](https://user-images.githubusercontent.com/68144657/155156189-f2a482f2-a5d6-47b2-ba8b-c84d94dbcd80.png)  
 * 키 예시  
 ```json
@@ -22,8 +23,8 @@
         "public_key": "04b546b2a1903e3912260fea264625191395cbb71a996815fdcbbec58ddcc05db522c1dbbc43ee2cd4f946b1cfccd85c8f85486ede484033fc8a023ec7fd57e6d2"  
     }  
 ```
-3. http://localhost:5000/mine   
-채굴  
+## 3. 채굴  
+http://localhost:5000/mine   
 ```json
     {  
         "private_key" : "1EqApkWCawAdsj2F2pkmEKrqJpQmXfGztp"  
@@ -31,8 +32,8 @@
 ```
 ![image](https://user-images.githubusercontent.com/68144657/155157988-03799764-21fb-4278-bbe7-202be67eafa1.png)    
 
-4. http://localhost:5000/add_transaction  
-트랜잭션 추가  
+## 4. 트랜잭션 추가  
+http://localhost:5000/add_transaction  
 보내려는 개수, 수신자, 송신자, 송신자 개인키  
 ```json
     {  
@@ -44,12 +45,12 @@
 ```
 ![image](https://user-images.githubusercontent.com/68144657/155272428-3994ddbd-4f00-4bd8-acb5-e653b5ea8de8.png)
 
-5. http://localhost:5000/transactions  
-트랜잭션 확인  
+## 5. 트랜잭션 확인  
+http://localhost:5000/transactions  
 ![image](https://user-images.githubusercontent.com/68144657/155188478-c4a78704-c91a-42ba-892c-74ded0046792.png)
 
-6. http://localhost:5000/transactions/connect_node  
-노드 연결 (Post)
+## 6. 노드 연결 (Post)  
+http://localhost:5000/transactions/connect_node  
 ```json
 {
     "nodes" : ["http://192.168.87.47:50001"]
@@ -57,8 +58,8 @@
 ```
 ![image](https://user-images.githubusercontent.com/68144657/155158145-3ae94c3e-83ff-4063-ad8a-4fbe77ae9236.png)  
 
-7.http://localhost:5000/transactions/update_chain    
-체인 업데이트  
+## 7. 체인 업데이트   
+http://localhost:5000/transactions/update_chain    
 ![image](https://user-images.githubusercontent.com/68144657/155158276-0a582da6-d049-4798-9a63-2f9d74d03983.png)  
 
 
