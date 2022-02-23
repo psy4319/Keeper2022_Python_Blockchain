@@ -17,15 +17,25 @@ def get_chain():
     block_json = []
     for block in b.chain:
         if 'list' in str(type(block['transactions'])):
+            block_json.append(block)
             continue
         transactions = json.loads(block['transactions'])
         transaction_json = []
         for transaction in transactions:
             tx_input_json = []
-            for input in json.loads(transaction['tx_inputs']):
+            if 'str' in str(type(transaction['tx_inputs'])):
+                tx_inputs = json.loads(transaction['tx_inputs'])
+            else:
+                tx_inputs = transaction['tx_inputs']
+            for input in tx_inputs:
                 tx_input_json.append(input)
+
             tx_output_json = []
-            for output in json.loads(transaction['tx_outputs']):
+            if 'str' in str(type(transaction['tx_outputs'])):
+                tx_outputs = json.loads(transaction['tx_outputs'])
+            else:
+                tx_outputs = transaction['tx_outputs']
+            for output in tx_outputs:
                 tx_output_json.append(output)
             transaction['tx_inputs'] = tx_input_json
             transaction['tx_outputs'] = tx_output_json
@@ -62,10 +72,19 @@ def mining():
     transaction_json = []
     for transaction in block['transactions']:
         tx_input_json = []
-        for input in json.loads(transaction['tx_inputs']):
+        if 'str' in str(type(transaction['tx_inputs'])):
+            tx_inputs = json.loads(transaction['tx_inputs'])
+        else:
+            tx_inputs = transaction['tx_inputs']
+        for input in tx_inputs:
             tx_input_json.append(input)
+
         tx_output_json = []
-        for output in json.loads(transaction['tx_outputs']):
+        if 'str' in str(type(transaction['tx_outputs'])):
+            tx_outputs = json.loads(transaction['tx_outputs'])
+        else:
+            tx_outputs = transaction['tx_outputs']
+        for output in tx_outputs:
             tx_output_json.append(output)
         transaction['tx_inputs'] = tx_input_json
         transaction['tx_outputs'] = tx_output_json
@@ -142,8 +161,10 @@ def return_transactions():
     tx_json = []
     tx_list = b.transaction_list
     for tx in tx_list:
-        tx['tx_inputs'] = json.loads(tx['tx_inputs'])
-        tx['tx_outputs'] = json.loads(tx['tx_outputs'])
+        if 'str' in str(type(tx['tx_inputs'])):
+            tx['tx_inputs'] = json.loads(tx['tx_inputs'])
+        if 'str' in str(type(tx['tx_outputs'])):
+            tx['tx_outputs'] = json.loads(tx['tx_outputs'])
         tx_json.append(tx)
     return jsonify(tx_json), 201
 
