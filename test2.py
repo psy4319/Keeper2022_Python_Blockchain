@@ -14,13 +14,13 @@ b = Blockchain()
 # blockchain 확인
 @app.route('/', methods=['GET'])
 def get_chain():
-    chain_json = []
+    block_json = []
     for block in b.chain:
-        block = json.loads(block)
-        block['transactions'] = json.loads(block['transactions'])
+        if 'list' in str(type(block['transactions'])):
+            continue
+        transactions = json.loads(block['transactions'])
         transaction_json = []
-        for transaction in block['transactions']:
-            transaction = json.loads(transaction)
+        for transaction in transactions:
             tx_input_json = []
             for input in json.loads(transaction['tx_inputs']):
                 tx_input_json.append(input)
@@ -31,9 +31,9 @@ def get_chain():
             transaction['tx_outputs'] = tx_output_json
             transaction_json.append(transaction)
         block['transactions'] = transaction_json
-        chain_json.append(block)
+        block_json.append(block)
     response = {
-        'chain': chain_json,
+        'chain': block_json,
         'length': len(b.chain)
     }
     return response
@@ -41,7 +41,7 @@ def get_chain():
 
 # 키 생성
 @app.route('/generatekey', methods=['GET'])
-def generatekey():
+def generate_key():
     private_key = bitcoin.sha256(random.choice('something'))
     public_key = bitcoin.privkey_to_pubkey(private_key)
     address = bitcoin.pubkey_to_address(public_key)
@@ -57,11 +57,10 @@ def generatekey():
 @app.route('/mine', methods=['GET'])
 def mining():
     request_json = request.get_json()
-    block = json.loads(b.create_block(request_json.get('private_key')))
+    block = b.create_block(request_json.get('private_key'))
     block['transactions'] = json.loads(block['transactions'])
-    transaction_json=[]
+    transaction_json = []
     for transaction in block['transactions']:
-        transaction = json.loads(transaction)
         tx_input_json = []
         for input in json.loads(transaction['tx_inputs']):
             tx_input_json.append(input)
@@ -123,23 +122,8 @@ def connect_node():
 def update_chain():
     is_chain_updated = b.update_chain()
     chain_json = []
-    for block in b.chain:
-        block = json.loads(block)
-        block['transactions'] = json.loads(block['transactions'])
-        transaction_json = []
-        for transaction in block['transactions']:
-            transaction = json.loads(transaction)
-            tx_input_json = []
-            for input in json.loads(transaction['tx_inputs']):
-                tx_input_json.append(input)
-            tx_output_json = []
-            for output in json.loads(transaction['tx_outputs']):
-                tx_output_json.append(output)
-            transaction['tx_inputs'] = tx_input_json
-            transaction['tx_outputs'] = tx_output_json
-            transaction_json.append(transaction)
-        block['transactions'] = transaction_json
-        chain_json.append(block)
+    for i in range(len(b.chain)):
+        chain_json.append(b.chain[i])
     if is_chain_updated:
         response = {
             'message': 'The nodes had different chains so the chain was replacted by the longest chain.',
@@ -158,7 +142,6 @@ def return_transactions():
     tx_json = []
     tx_list = b.transaction_list
     for tx in tx_list:
-        tx = json.loads(str(tx))
         tx['tx_inputs'] = json.loads(tx['tx_inputs'])
         tx['tx_outputs'] = json.loads(tx['tx_outputs'])
         tx_json.append(tx)
