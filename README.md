@@ -42,12 +42,11 @@
         "senderPrivate" : "cd0aa9856147b6c5b4ff2b7dfee5da20aa38253099ef1b4a64aced233c9afe29"  
     }   
 ```
-![image](https://user-images.githubusercontent.com/68144657/155188478-c4a78704-c91a-42ba-892c-74ded0046792.png)
-
+![image](https://user-images.githubusercontent.com/68144657/155272428-3994ddbd-4f00-4bd8-acb5-e653b5ea8de8.png)
 
 5. http://localhost:5000/transactions  
 트랜잭션 확인  
-![image](https://user-images.githubusercontent.com/68144657/155151209-46a173fd-a647-4a2e-b5e7-2ac023df248f.png)  
+![image](https://user-images.githubusercontent.com/68144657/155188478-c4a78704-c91a-42ba-892c-74ded0046792.png)
 
 6. http://localhost:5000/transactions/connect_node  
 노드 연결 (Post)
