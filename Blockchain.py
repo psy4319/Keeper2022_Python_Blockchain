@@ -22,11 +22,10 @@ class Blockchain:
         self.chain.append(json.loads(str(genesis_block)))
 
     def make_transaction(self, amount, receiver_address, sender_address, sender_private_key):
-        transaction = Transaction(self, amount, receiver_address, sender_address, sender_private_key)
-        # try:
-        #     transaction = Transaction(self, amount, receiver_address, sender_address, sender_private_key)
-        # except Exception as e:
-        #     return str(e)
+        try:
+            transaction = Transaction(self, amount, receiver_address, sender_address, sender_private_key)
+        except Exception as e:
+            return str(e)
         self.transaction_list.append(json.loads(str(transaction)))
         return transaction.hash
 

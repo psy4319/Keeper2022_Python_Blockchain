@@ -63,7 +63,6 @@ class Transaction:
                 continue
             transactions = json.loads(block['transactions'])
             for tx in transactions:
-                print(type(tx), tx)
                 tx_inputs = json.loads(tx['tx_inputs'])
                 for i in range(len(tx_inputs)):
                     input = tx_inputs[i]
