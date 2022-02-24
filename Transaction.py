@@ -63,17 +63,10 @@ class Transaction:
                 continue
             transactions = json.loads(block['transactions'])
             for tx in transactions:
-                tx_inputs = json.loads(tx['tx_inputs'])
-                for i in range(len(tx_inputs)):
-                    input = tx_inputs[i]
-                    for utxo in utxo_list:
-                        condition = input['hash'] == utxo['hash'] and input['idx'] == utxo['index'] \
-                            and input['address'] == utxo['to'] and input['amount'] == utxo['amount']
-                        if condition:
-                            index = utxo_list.index(utxo)
-                            del utxo_list[index]
-
-                tx_outs = json.loads(tx['tx_outputs'])
+                if 'list' in str(type(tx['tx_outputs'])):
+                    tx_outs = tx['tx_outputs']
+                else:
+                    tx_outs = json.loads(tx['tx_outputs'])
                 for i in range(len(tx_outs)):
                     output = tx_outs[i]
                     if sender_address == output['to']:
@@ -85,6 +78,16 @@ class Transaction:
                                 'amount': output['amount']
                             }
                         )
+
+                tx_inputs = json.loads(tx['tx_inputs'])
+                for i in range(len(tx_inputs)):
+                    input = tx_inputs[i]
+                    for utxo in utxo_list:
+                        condition = input['hash'] == utxo['hash'] and input['idx'] == utxo['index'] \
+                            and input['address'] == utxo['to'] and input['amount'] == utxo['amount']
+                        if condition:
+                            index = utxo_list.index(utxo)
+                            del utxo_list[index]
 
         # update blockchain transaction
         for tx in blockchain.transaction_list:
