@@ -79,7 +79,10 @@ class Transaction:
                             }
                         )
 
-                tx_inputs = json.loads(tx['tx_inputs'])
+                if 'list' in str(type(tx['tx_outputs'])):
+                    tx_inputs = tx['tx_inputs']
+                else:
+                    tx_inputs = json.loads(tx['tx_inputs'])
                 for i in range(len(tx_inputs)):
                     input = tx_inputs[i]
                     for utxo in utxo_list:
